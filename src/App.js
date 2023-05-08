@@ -11,6 +11,7 @@ function Element({value}){
     <div className="Element">
       <div className="El-header">
         <p>{title}</p>
+        <p>"placeholder"</p>
       </div>
       <div className="El-content">
         <p>{description}</p>
@@ -45,9 +46,12 @@ function App({initialCount = 1}) {
   const [count, setCount] = React.useState(
     window.localStorage.getItem('count') ?? initialCount
   )
-  var elements = [];
+  var dataArray = [tempObj,tempObj,tempObj,tempObj,tempObj,tempObj,tempObj];
+
   var tempObj = {title:"Here's the title", description:"this is the content"};
   var tempArray = new Array(tempObj, tempObj, tempObj, tempObj, tempObj);
+
+  var elements = [];
 
   // const [elements, setElements] = React.useState(
   //   window.localStorage.getItem('elements') ?? []
@@ -59,22 +63,36 @@ function App({initialCount = 1}) {
   })
 
   function createDisplay() {
-    var dataArray = new Array(tempArray.slice(0, count));
+    dataArray = tempArray.slice(0, count);
+    console.log("creating display ");
     console.log(dataArray);
 
-    elements = dataArray.map( item => <Element value={ item } />);
+    elements = dataArray.map( (item, index) => {
+      console.log("elements rendering");
+      console.log(item);
+      console.log("for index")
+      console.log(index)
+      //return (<div key={index} >Hello world</div>)
+      return (<Element value={ item } />)
+    });
+    console.log("elements");
     console.log(elements);
   }
 
+  createDisplay();
+
   return (
-    <div className="App-header">
-      <UserInput
-        count={count}
-        onCountChange={event => setCount(event.target.value)}
-        createDisplay={createDisplay}
-      />
-      {elements}
-    </div>
+      <div className="App-header">
+        <UserInput
+          count={count}
+          onCountChange={event => setCount(event.target.value)}
+          createDisplay={createDisplay}
+        />
+        <div className="App-list">
+        {elements}
+        </div>
+      </div>
+
   );
 }
 

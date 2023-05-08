@@ -4,16 +4,19 @@ import './App.css';
 import * as React from 'react'
 
 function Element({value}){
+  const [isActive, setActive] = React.useState(false);
   const title = value.title;
   const description = value.description;
-  console.log("element initiated");
   return (
-    <div className="Element">
+    <div className="Element" onClick={
+        () => {
+          setActive(!isActive)
+        }
+      }>
       <div className="El-header">
         <p>{title}</p>
-        <p>"placeholder"</p>
       </div>
-      <div className="El-content">
+      <div className={isActive ? 'content-active': 'content-hidden'} >
         <p>{description}</p>
       </div>
     </div>
@@ -34,18 +37,11 @@ function UserInput({count, onCountChange, createDisplay}){
     </div>
   )
 }
-/*
-function Accordion({elements}){
-
-  console.log(...elements);
-  return <div>{`This many: ${elements.length}`}</div>
-
-}
-*/
 function App({initialCount = 1}) {
   const [count, setCount] = React.useState(
     window.localStorage.getItem('count') ?? initialCount
   )
+
   var dataArray = [tempObj,tempObj,tempObj,tempObj,tempObj,tempObj,tempObj];
 
   var tempObj = {title:"Here's the title", description:"this is the content"};
@@ -64,19 +60,10 @@ function App({initialCount = 1}) {
 
   function createDisplay() {
     dataArray = tempArray.slice(0, count);
-    console.log("creating display ");
-    console.log(dataArray);
 
     elements = dataArray.map( (item, index) => {
-      console.log("elements rendering");
-      console.log(item);
-      console.log("for index")
-      console.log(index)
-      //return (<div key={index} >Hello world</div>)
-      return (<Element value={ item } />)
+      return (<Element key={ index } value={ item } />)
     });
-    console.log("elements");
-    console.log(elements);
   }
 
   createDisplay();

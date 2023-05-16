@@ -39,7 +39,7 @@ function App() {
         <div className="big-title">Hidden<br />Mystery<br />Accordion</div>
         <div className="App input-block">
           <label htmlFor="count" className="prompt">Show me: </label>
-          <input value={count} onChange={onCountChange} id="count" />
+          <input value={count} onChange={onCountChange} id="count" type="number" autoFocus />
           <span className="prompt">items...</span>
           <button onClick={createDisplay}>
             Bring it!

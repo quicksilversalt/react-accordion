@@ -10,11 +10,6 @@ muted dark blue #454B66 ^^ #6D769C
 muted light blue #AC9FBB  vvvv #5B4C6B
 */
 
-.App {
-  
-  
-  
-}
 
 .big-title {
   padding: 20px 0 20px 20px;
@@ -55,6 +50,7 @@ muted light blue #AC9FBB  vvvv #5B4C6B
 .grey-box {
   background-color: #292230;
   border-radius: 15px;
+  cursor: pointer;
 }
 
 
@@ -104,7 +100,33 @@ muted light blue #AC9FBB  vvvv #5B4C6B
   font-weight: 400;
 }
 
-input, button {
-  margin: 0 4px;
+input {
+  margin: 0 8px;
+  background-color: #F4EEE2;
+  width: 40px;
+  padding: 4px 8px;
+  border-radius: 6px;
+  border: 2px solid #8F7CA2;
+}
+
+button {
+  margin: 0 16px;
+  cursor: pointer;
+  border: none;
+  background-color: #EEE6D3;
+  padding: 8px 16px;
+  font-size: 14px;
+  border-radius: 8px;
+  filter: drop-shadow(2px 2px 2px #454B66);
+}
+
+button:hover {
+  background-color: #F4EEE2;
+  filter: drop-shadow(3px 3px 4px #454B66);
+}
+
+button:active {
+  filter: drop-shadow(1px 1px 0px #454B66);
+  background-color: #DDCBA6;
 }
 

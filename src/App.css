@@ -33,10 +33,12 @@ muted light blue #AC9FBB  vvvv #5B4C6B
   height: 20px;
   background-color: #C33149;
   margin-right: 15px;
+  transition: all 0.25s ease-in-out;
 }
 .header-number.item-seen {
   background-color: #EB9C99;
   color:#292230;
+  transition: all 0.25s ease-in-out;
 }
 
 .input-block {
@@ -52,8 +54,6 @@ muted light blue #AC9FBB  vvvv #5B4C6B
   border-radius: 15px;
   cursor: pointer;
 }
-
-
 
 .App-wrapper {
   font-family: 'Prompt', sans-serif;
@@ -73,7 +73,6 @@ muted light blue #AC9FBB  vvvv #5B4C6B
 }
 
 .El-content {
-  padding: 20px;
   background-color: #292230;
   border-radius: 0 0 15px 15px;
 }
@@ -89,10 +88,15 @@ muted light blue #AC9FBB  vvvv #5B4C6B
   color: #61dafb;
 }
 .content-hidden{
-  display:none;
+  max-height: 0;
+  padding: 0 20px;
+  overflow: hidden;
+  transition: all 0.15s ease-out;
 }
 .content-active{
-  display: block;
+  max-height: 500px;
+  padding: 20px;
+  transition: all 0.25s ease-in-out;
 }
 
 .prompt {
@@ -118,15 +122,18 @@ button {
   font-size: 14px;
   border-radius: 8px;
   filter: drop-shadow(2px 2px 2px #454B66);
+  transition: all 0.15s ease-in-out;
 }
 
 button:hover {
   background-color: #F4EEE2;
   filter: drop-shadow(3px 3px 4px #454B66);
+  transition: all 0.15s ease-in-out;
 }
 
 button:active {
   filter: drop-shadow(1px 1px 0px #454B66);
   background-color: #DDCBA6;
+  transition: all 0.15s ease-in-out;
 }
 

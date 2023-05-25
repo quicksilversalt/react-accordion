@@ -1,29 +1,30 @@
-import logo from './logo.svg';
 import './App.css';
 import { grabData } from './fetchdata.js'
 import { useEffect, useState } from 'react'
 
-function Element({ description, title }){
+function Element({ description, title, indx }){
   const [isActive, setIsActive] = useState(false);
+  const [isUnseen, setIsUnseen] = useState(true);
 
   return (
-    <div className="Element" onClick={
+    <div className="Element grey-box" onClick={
         () => {
-          setIsActive(!isActive)
+          setIsActive(!isActive);
+          setIsUnseen(false);
         }
       }>
       <div className="El-header">
-        <p>{title}</p>
+        <span className={`header-number ${isUnseen ? "" : "item-seen"}`}>{indx}</span><span>{title}</span>
       </div>
-      <div className={isActive ? 'content-active': 'content-hidden'} >
-        <p>{description}</p>
+      <div className={`El-content ${isActive ? "content-active" : "content-hidden"}`} >
+        <span>{description}</span>
       </div>
     </div>
   )
 }
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [count, setCount] = useState(0);
   const [dataList, setDataList] = useState([])
 
   async function createDisplay() {
@@ -34,17 +35,19 @@ function App() {
   const onCountChange = (e) => setCount(e.target.value);
 
   return (
-      <div className="App-header">
-        <div className="App">
-          <label htmlFor="count">How many: </label>
-          <input value={count} onChange={onCountChange} id="count" />
+      <div className="App-wrapper ">
+        <div className="big-title">Hidden<br />Mystery<br />Accordion</div>
+        <div className="App input-block">
+          <label htmlFor="count" className="prompt">Show me: </label>
+          <input value={count} onChange={onCountChange} id="count" type="number" autoFocus />
+          <span className="prompt">items...</span>
           <button onClick={createDisplay}>
-            Create Display
+            Bring it!
           </button>
         </div>
         <div className="App-list">
           {dataList.map((item) => {
-            return <Element key={item.id} description={item.body} title={item.title} />
+            return <Element key={item.id} description={item.body} title={item.title} indx={item.id} />
           })}
         </div>
       </div>
@@ -53,7 +56,3 @@ function App() {
 }
 
 export default App;
-
-//implement linter
-//style - define accordion better
-//
